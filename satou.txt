@@ -1,0 +1,35 @@
+diarydaylate（一日遅れの日記）
+
+最初はNuxt内蔵のcontent機能を使って日記を書いたが、
+	日記を書くたびにプログラムをアップしなければならないため、止めた
+次は、ContentfulというCMSを使った。
+	未解決の問題があり、ローカルでは正常なのに、NetlifyにDeployした時だけ日記が更新され
+	日記を更新しても本番の日記が更新されない。
+	また、日本語入力で、入力中の文字が漢字選択枠に隠れるので、間違い入力で分かりずらい。
+	さらに、記事の改行がMDファイル仕様ではないみたい。
+今回は、microCMSというCMSを使う。
+	これはSmallTripでも使っており、次のサイトを参考に作る
+
+microCMS + NuxtでJamstackブログを作ってみよう
+https://blog.microcms.io/microcms-nuxt-jamstack-blog/
+
+日記url		https://diarydaylate.microcms.io/create-api
+X-MICROCMS-API-KEY : 2b9d0d8843c649d18d7e7d23ad16cc69323d
+
+npx create-nuxt-app diarydaylate
+
+	? Project name: diarydaylate
+	? Programming language: JavaScript
+	? Package manager: Npm
+	? UI framework: Vuetify.js
+	? Nuxt.js modules: Axios - Promise based HTTP client
+	? Linting tools: (Press <space> to select, <a> to toggle all, <i> to invert selection)
+	? Testing framework: None
+	? Rendering mode: Universal (SSR / SSG)
+	? Deployment target: Static (Static/Jamstack hosting)
+	? Development tools: jsconfig.json (Recommended for VS Code if you're not using typescript)
+	? What is your GitHub username? satou1497
+	? Version control system: Git
+
+	cd diarydaylate
+        npm run dev
