@@ -14,7 +14,7 @@ export default {
     const { data } = await axios.get(
       `https://diarydaylate.microcms.io/api/v1/blogs/${params.slug}`,
       {
-        headers: { 'X-MICROCMS-API-KEY': '2b9d0d8843c649d18d7e7d23ad16cc69323d' }
+        headers: { 'X-MICROCMS-API-KEY': process.env.API_KEY }
       }
     )
     return data

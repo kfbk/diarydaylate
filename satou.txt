@@ -33,3 +33,29 @@ npx create-nuxt-app diarydaylate
 
 	cd diarydaylate
         npm run dev
+
+6. ビルドして静的ファイルを生成してみる
+7. ファイルをホスティングする
+	GitHubでリポジトリを作成	Repository name : diarydaylate
+	terminalにて			git init
+					git add .
+					git commit -m 'first commit'
+					git remote add origin https://github.com/kfbk/diarydaylate.git
+					git push -u origin master
+	Netlifyにログイン		new site from git ボタンからサイトを新規作成
+					BuildCommand ： npm run generate
+					サイト名をdiarydaylateに変更
+	次で作成完 https://diarydaylate.netlify.app/
+	sourceTreeインストール		ローカルリポジトリを追加
+8. microCMSとNetlifyを連携する
+	OK
+
+---------------------------------------------
+ここまでOKで以前使ったContentfulの記事を参考に改造しようと思う
+
+ContentfulからAPIを取得してNuxt.jsで記事一覧を表示する
+https://blog.cloud-acct.com/posts/blog-contentful-api
+
+環境変数を扱うdotenvをインストールする
+	npm install --save @nuxtjs/dotenv
+Vuetifyの魔力で見た目をかっこよくする

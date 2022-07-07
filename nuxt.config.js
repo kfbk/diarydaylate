@@ -44,6 +44,7 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/dotenv'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -79,7 +80,7 @@ export default {
       const pages = await axios
         // 次のblogsに続く「?limit=100」を消した
         .get('https://diarydaylate.microcms.io/api/v1/blogs', {
-          headers: { 'X-MICROCMS-API-KEY': '2b9d0d8843c649d18d7e7d23ad16cc69323d' }
+          headers: { 'X-MICROCMS-API-KEY': process.env.API_KEY }
         })
         .then((res) =>
           res.data.contents.map((content) => ({

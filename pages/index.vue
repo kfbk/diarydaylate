@@ -1,11 +1,53 @@
 <template>
-  <ul>
+  <v-row justify="center">
+    <v-col cols="12" sm="11" md="10" xl="8">
+      <v-row>
+        <v-col
+          v-for="content in contents" :key="content.id"
+          cols="12" sm="6" lg="4" xl="3"
+        >
+          <v-card max-width="400" class="mx-auto">
+            <v-card-title>
+              {{ content.title }}
+            </v-card-title>
+            <v-card-text>
+              {{ content.publishedAt }}
+              <!-- body: (...)
+                category: (...)
+                createdAt: (...)
+                eyecatch: (...)
+                id: (...)
+                publishedAt: (...)
+                revisedAt: (...)
+                title: (...)
+                updatedAt: (...)
+                -->
+            </v-card-text>
+            <v-list-item
+              three-line
+              style="min-height: unset;"
+            >
+              <v-list-item-subtitle v-html="content.body">
+              </v-list-item-subtitle>
+            </v-list-item>
+            <v-card-actions>
+              <v-spacer />
+              <v-btn text color="primary">
+                この記事を見る
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-col>
+  </v-row>
+  <!-- <ul>
     <li v-for="content in contents" :key="content.id">
       <nuxt-link :to="`/${content.id}`">
         {{ content.title }}
       </nuxt-link>
     </li>
-  </ul>
+  </ul> -->
 </template>
 
 <script>
@@ -17,7 +59,7 @@ export default {
       'https://diarydaylate.microcms.io/api/v1/blogs',
       {
         // your-api-key部分は自分のapi-keyに置き換えてください
-        headers: { 'X-MICROCMS-API-KEY': '2b9d0d8843c649d18d7e7d23ad16cc69323d' }
+        headers: { 'X-MICROCMS-API-KEY': process.env.API_KEY }
       }
     )
     return data
