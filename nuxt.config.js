@@ -10,7 +10,7 @@ export default {
     titleTemplate: '%s - diarydaylate',
     title: 'diarydaylate',
     htmlAttrs: {
-      lang: 'en'
+      lang: 'ja'
     },
     meta: [
       { charset: 'utf-8' },
