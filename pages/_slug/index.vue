@@ -1,9 +1,33 @@
 <template>
-  <main class="main">
+  <div>
+    {{ title }}
+    <v-img
+      :src="eyecatch.url"
+      :aspect-ratio="16/9"
+      width="700"
+      height="400"
+      class="mx-auto"
+    />
+    {{ publishedAt }}
+    <div class="post" v-html="body"></div>
+    <div>
+      <v-btn
+        outlined
+        color="primary"
+        to="/"
+      >
+        <v-icon size="16"> 
+          fas fa-angle-double-left
+        </v-icon>
+        <span class="ml-1">ホームへ戻る</span>
+      </v-btn>
+    </div>
+  </div>
+  <!-- <main class="main">
     <h1 class="title">{{ title }}</h1>
     <p class="publishedAt">{{ publishedAt }}</p>
     <div class="post" v-html="body"></div>
-  </main>
+  </main> -->
 </template>
 
 <script>

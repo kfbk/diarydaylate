@@ -78,8 +78,7 @@ export default {
   generate: {
     async routes() {
       const pages = await axios
-        // 次のblogsに続く「?limit=100」を消した
-        .get('https://diarydaylate.microcms.io/api/v1/blogs', {
+        .get('https://diarydaylate.microcms.io/api/v1/blogs?limit=10', {
           headers: { 'X-MICROCMS-API-KEY': process.env.API_KEY }
         })
         .then((res) =>

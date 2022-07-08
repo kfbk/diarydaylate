@@ -7,9 +7,23 @@
           cols="12" sm="6" lg="4" xl="3"
         >
           <v-card max-width="400" class="mx-auto">
-            <v-card-title>
-              {{ content.title }}
-            </v-card-title>
+            <!-- <img src="~/assets/images/defaultEyeCatch.png" /> OK -->
+            <!-- <img :src="content.eyecatch" alt=""> NG -->
+            <v-img
+              :src="content.eyecatch.url"
+              :aspect-ratio="16/9"
+              max-height="200"
+              class="white--text"
+            >
+              <v-card-title
+                class="align-end
+                fill-height
+                font-weight-bold
+                fuchidori"
+              >
+                {{ content.title }}
+              </v-card-title>
+            </v-img>
             <v-card-text>
               {{ content.publishedAt }}
               <!-- body: (...)
@@ -32,7 +46,11 @@
             </v-list-item>
             <v-card-actions>
               <v-spacer />
-              <v-btn text color="primary">
+              <v-btn 
+                text 
+                color="primary"
+                :to="'/' + content.id"
+              >
                 この記事を見る
               </v-btn>
             </v-card-actions>
@@ -69,6 +87,12 @@ export default {
   }
 }
 </script>
+<style>
+.fuchidori {
+  -webkit-text-stroke: 1px #000;
+  text-stroke: 10px #000;
+}
+</style>
 <!-- <template>
   <v-row justify="center" align="center">
     <v-col cols="12" sm="8" md="6">

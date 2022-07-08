@@ -59,3 +59,9 @@ https://blog.cloud-acct.com/posts/blog-contentful-api
 環境変数を扱うdotenvをインストールする
 	npm install --save @nuxtjs/dotenv
 Vuetifyの魔力で見た目をかっこよくする
+Netlifyに環境変数をセットする
+	API_KEY
+ブログ記事の個別ページを用意する
+ブログ記事のリンクにparamsを埋め込む
+次からは保留
+	アイキャッチ画像がない場合の対応をする
