@@ -8,7 +8,7 @@
       height="400"
       class="mx-auto"
     />
-    {{ publishedAt }}
+    {{ new Date(publishedAt).toLocaleDateString() }}
     <div class="post" v-html="body"></div>
     <div>
       <v-btn
@@ -17,7 +17,8 @@
         to="/"
       >
         <v-icon size="16"> 
-          fas fa-angle-double-left
+          <!-- fas fa-angle-double-left -->
+          mdi-home
         </v-icon>
         <span class="ml-1">ホームへ戻る</span>
       </v-btn>

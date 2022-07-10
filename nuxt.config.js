@@ -7,8 +7,9 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - diarydaylate',
-    title: 'diarydaylate',
+    titleTemplate: '%s',
+    // title: 'diarydaylate',
+    title: '一日遅れの日記',
     htmlAttrs: {
       lang: 'ja'
     },

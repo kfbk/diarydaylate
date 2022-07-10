@@ -25,7 +25,7 @@
               </v-card-title>
             </v-img>
             <v-card-text>
-              {{ content.publishedAt }}
+              {{ new Date(content.publishedAt).toLocaleDateString() }}
               <!-- body: (...)
                 category: (...)
                 createdAt: (...)
@@ -83,14 +83,18 @@ export default {
     return data
   },
   mounted() {
-    console.log("sato ", this.contents)
+    console.log("sato ", this.contents.length)
   }
 }
 </script>
 <style>
 .fuchidori {
-  -webkit-text-stroke: 1px #000;
-  text-stroke: 10px #000;
+      text-shadow:
+           1px 1px 0px #000, -1px -1px 0px #000,
+          -1px 1px 0px #000,  1px -1px 0px #000,
+           1px 0px 0px #000, -1px  0px 0px #000,
+           0px 1px 0px #000,  0px -1px 0px #000;
+  /* -webkit-text-stroke: 1px #000; */
 }
 </style>
 <!-- <template>
