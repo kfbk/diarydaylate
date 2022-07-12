@@ -3,9 +3,11 @@
     <v-col cols="12" sm="11" md="10" xl="8">
       <v-row>
         <v-col
-          v-for="content in contents" :key="content.id"
+          v-for="content in $store.getters.takePosts" :key="content.id"
           cols="12" sm="6" lg="4" xl="3"
         >
+        <!-- v-for="content in posts" :key="content.id" -->
+        <!--           v-for="content in contents" :key="content.id" -->
           <v-card max-width="400" class="mx-auto">
             <!-- <img src="~/assets/images/defaultEyeCatch.png" /> OK -->
             <!-- <img :src="content.eyecatch" alt=""> NG -->
@@ -71,19 +73,53 @@
 <script>
 import axios from 'axios'
 export default {
-  async asyncData() {
-    const { data } = await axios.get(
-      // your-service-id部分は自分のサービスidに置き換えてください
-      'https://diarydaylate.microcms.io/api/v1/blogs',
-      {
-        // your-api-key部分は自分のapi-keyに置き換えてください
-        headers: { 'X-MICROCMS-API-KEY': process.env.API_KEY }
-      }
-    )
-    return data
-  },
+  // async asyncData() {
+    // const { data } = await axios.get(
+    //   // your-service-id部分は自分のサービスidに置き換えてください
+    //   'https://diarydaylate.microcms.io/api/v1/blogs',
+    //   {
+    //     // your-api-key部分は自分のapi-keyに置き換えてください
+    //     headers: { 'X-MICROCMS-API-KEY': process.env.API_KEY }
+    //   }
+    // )
+    // return data
+    // 次のように書ける（本文も変更、contents-->posts）
+    // let posts = []
+    // await axios.get(
+    //   'https://diarydaylate.microcms.io/api/v1/blogs?limit=100',
+    //   {
+    //     headers: { 'X-MICROCMS-API-KEY': process.env.API_KEY }
+    //   }
+    // ).then(
+    //   res => {
+    //     (posts = res.data.contents)
+    //     console.log(res.data)
+    //   }
+    // )
+    // return {posts}
+    // console.log(data) で、次のデータが取れた
+    // {
+    //   contents: [
+    //     {
+    //       id: '65ukj3a_kbzi',
+    //       createdAt: '2022-07-10T23:47:25.127Z',
+    //       updatedAt: '2022-07-10T23:47:25.127Z',
+    //       publishedAt: '2022-07-10T23:47:25.127Z',
+    //       revisedAt: '2022-07-10T23:47:25.127Z',
+    //       title: '参院選',
+    //       body: '<p>昨日は参院選があり...</p>',
+    //       eyecatch: [Object],
+    //       category: [Object]
+    //     },
+    //     ...
+    //   ],
+    //   totalCount: 11,
+    //   offset: 0,
+    //   limit: 10
+    // }
+  // },
   mounted() {
-    console.log("sato ", this.contents.length)
+    // console.log("sato ", this.contents.length)
   }
 }
 </script>

@@ -94,7 +94,10 @@
       color="primary"
       app
     >
-      <span>&copy; {{ new Date().getFullYear() }}</span>
+      <v-col class="text-center">
+        <!-- p,div ダメだった -->
+        <span>&copy; {{ new Date().getFullYear() }}</span>
+      </v-col>
     </v-footer>
   </v-app>
 </template>

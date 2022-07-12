@@ -48,6 +48,11 @@ export default {
     '@nuxtjs/dotenv'
   ],
 
+  router: {
+    middleware: [
+      'getCMS'
+    ]
+  },
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
@@ -78,8 +83,9 @@ export default {
   },
   generate: {
     async routes() {
+      // ここのLimitは、本文のLimitと関係なく、１度作成すれば少なくてよい
       const pages = await axios
-        .get('https://diarydaylate.microcms.io/api/v1/blogs?limit=10', {
+        .get('https://diarydaylate.microcms.io/api/v1/blogs?limit=100', {
           headers: { 'X-MICROCMS-API-KEY': process.env.API_KEY }
         })
         .then((res) =>

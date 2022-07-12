@@ -1,15 +1,15 @@
 <template>
   <div>
-    {{ title }}
+    {{ currentPost.title }}
     <v-img
-      :src="eyecatch.url"
+      :src="currentPost.eyecatch.url"
       :aspect-ratio="16/9"
       width="700"
       height="400"
       class="mx-auto"
     />
-    {{ new Date(publishedAt).toLocaleDateString() }}
-    <div class="post" v-html="body"></div>
+    {{ new Date(currentPost.publishedAt).toLocaleDateString() }}
+    <div class="post" v-html="currentPost.body"></div>
     <div>
       <v-btn
         outlined
@@ -35,14 +35,27 @@
 import axios from 'axios'
 
 export default {
-  async asyncData({ params }) {
-    const { data } = await axios.get(
-      `https://diarydaylate.microcms.io/api/v1/blogs/${params.slug}`,
-      {
-        headers: { 'X-MICROCMS-API-KEY': process.env.API_KEY }
-      }
-    )
-    return data
+  // async asyncData({ params }) {
+  //   const { data } = await axios.get(
+  //     `https://diarydaylate.microcms.io/api/v1/blogs/${params.slug}`,
+  //     {
+  //       headers: { 'X-MICROCMS-API-KEY': process.env.API_KEY }
+  //     }
+  //   )
+  //   console.log("_slug : ", data)
+  //   return data
+  // }
+  async asyncData({ payload, store, params, error }) {
+    // console.log((payload)? 'payload=OK': 'payload=NG' )
+    // console.log('posts= ', store.state.posts)
+    const currentPost = payload || await store.state.posts.find(post => post.id === `${params.slug}`)
+
+    if (currentPost) {
+      // console.log('currentPost= ', currentPost)
+      return { currentPost }
+    } else {
+      return error({ statusCode: 400 })
+    }
   }
 }
 </script>
