@@ -1,5 +1,6 @@
 <template>
   <v-row justify="center">
+    <!-- <a href="/download/hoge.pdf" download="hoge.pdf">download</a> -->
     <v-col cols="12" sm="11" md="10" xl="8">
       <v-row>
         <v-col
@@ -17,14 +18,26 @@
               max-height="200"
               class="white--text"
             >
-              <v-card-title
-                class="align-end
+              <v-card-title>
+                <v-chip
+                  small
+                  dark
+                  color="primary"
+                  to="#"
+                  class="font-weight-bold"
+                >
+                  {{ content.category.name }}
+                </v-chip>
+              </v-card-title>
+              <v-card-text
+                class="
                 fill-height
                 font-weight-bold
                 fuchidori"
               >
+              <!-- align-end -->
                 {{ content.title }}
-              </v-card-title>
+              </v-card-text>
             </v-img>
             <v-card-text>
               {{ new Date(content.publishedAt).toLocaleDateString() }}

@@ -1,5 +1,10 @@
 <template>
   <div>
+    <v-breadcrumbs :items="breadcrumbs">
+      <template #divider>
+        <v-icon>mdi-chevron-right</v-icon>
+      </template>
+    </v-breadcrumbs>
     {{ currentPost.title }}
     <v-img
       :src="currentPost.eyecatch.url"
@@ -35,6 +40,15 @@
 import axios from 'axios'
 
 export default {
+  computed: {
+    breadcrumbs() {
+      const category = this.currentPost.category
+      return [
+        { text: 'ホーム', to: '/'},
+        { text: category.name, to: '#'}
+      ]
+    }
+  },
   // async asyncData({ params }) {
   //   const { data } = await axios.get(
   //     `https://diarydaylate.microcms.io/api/v1/blogs/${params.slug}`,
@@ -52,6 +66,22 @@ export default {
 
     if (currentPost) {
       // console.log('currentPost= ', currentPost)
+      // body: (...)
+      // category: Object
+      //   createdAt: (...)
+      //   id: (...)
+      //   name: "2022-07"
+      //   publishedAt: (...)
+      //   revisedAt: (...)
+      //   updatedAt: (...)
+      //   ...
+      // createdAt: (...)
+      // eyecatch: (...)
+      // id: (...)
+      // publishedAt: (...)
+      // revisedAt: (...)
+      // title: (...)
+      // updatedAt: (...)
       return { currentPost }
     } else {
       return error({ statusCode: 400 })
@@ -59,3 +89,18 @@ export default {
   }
 }
 </script>
+
+<style>
+pre {
+word-wrap: break-word;
+background-color: #e8e8e8;
+padding: 10px;
+border-radius: 4px;
+font-size: 16px;
+}
+
+/* 次で、Codeの背景色が同じにならない
+pre code {
+  background-color: #e8e8e8;
+} */
+</style>
