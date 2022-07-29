@@ -7,7 +7,7 @@
     </v-breadcrumbs>
     {{ currentPost.title }}
     <v-img
-      :src="currentPost.eyecatch.url"
+      :src="$eyecatch(currentPost)"
       :aspect-ratio="16/9"
       width="700"
       height="400"
@@ -37,7 +37,9 @@
 </template>
 
 <script>
-import axios from 'axios'
+// import axios from 'axios'
+// import defaultEyeCatch from '~/assets/images/defaultEyeCatch.png'
+
 
 export default {
   computed: {
@@ -47,7 +49,17 @@ export default {
         { text: 'ホーム', to: '/'},
         { text: category.name, to: '#'}
       ]
-    }
+    },
+    // 次をPlugin化してコメント最終ラインのreturnのみ生かす方法はエラーになる
+    // しかし、タグに直接「$eyecatch(post)」を書いたらうまくいった。
+    // setEyeCatch: () => (post) => {
+    //   // return { url: `https:${post.eyecatch.url}` }
+    //   // console.log(post.eyecatch.url)
+    //   if (post.eyecatch)
+    //     return post.eyecatch.url
+    //   return defaultEyeCatch
+    //   // return this.$eyecatch(post)
+    // }
   },
   // async asyncData({ params }) {
   //   const { data } = await axios.get(
@@ -61,7 +73,7 @@ export default {
   // }
   async asyncData({ payload, store, params, error }) {
     // console.log((payload)? 'payload=OK': 'payload=NG' )
-    // console.log('posts= ', store.state.posts)
+    // console.log(`${params.slug}`)
     const currentPost = payload || await store.state.posts.find(post => post.id === `${params.slug}`)
 
     if (currentPost) {

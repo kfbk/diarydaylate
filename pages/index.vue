@@ -13,33 +13,33 @@
             <!-- <img src="~/assets/images/defaultEyeCatch.png" /> OK -->
             <!-- <img :src="content.eyecatch" alt=""> NG -->
             <v-img
-              :src="content.eyecatch.url"
+              :src="$eyecatch(content)"
               :aspect-ratio="16/9"
               max-height="200"
               class="white--text"
             >
-              <v-card-title>
+            <!-- :src="setEyeCatch(content)" :src="content.eyecatch.url" -->
+              <v-card-text>
                 <v-chip
                   small
                   dark
-                  color="primary"
-                  to="#"
+                  :color="categoryColor(content.category.name)"
+                  :to="'/categories/' + content.category.id"
                   class="font-weight-bold"
                 >
+                <!-- :to="linkTo(content.category)" -->
                   {{ content.category.name }}
                 </v-chip>
-              </v-card-title>
-              <v-card-text
-                class="
-                fill-height
-                font-weight-bold
-                fuchidori"
-              >
-              <!-- align-end -->
-                {{ content.title }}
               </v-card-text>
             </v-img>
+              <v-card-title
+                class="fill-height"
+              >
+              <!--font-weight-bold align-end fuchidori-->
+                {{ content.title }}
+              </v-card-title>
             <v-card-text>
+              <!-- {{ getsatou(content.publishedAt) }} -->
               {{ new Date(content.publishedAt).toLocaleDateString() }}
               <!-- body: (...)
                 category: (...)
@@ -84,8 +84,44 @@
 </template>
 
 <script>
-import axios from 'axios'
+// import axios from 'axios'
+// import defaultEyeCatch from '~/assets/images/defaultEyeCatch.png'
+
 export default {
+  computed: {
+    // 次のように3通りの書き方がある
+    // categoryColor() {
+    // categoryColor: function () {
+    //   return (categoryName) => {
+    //     // '2022-06' str.substring(開始位置, 終了位置);
+    //     return (Number(categoryName.substring(5)) % 2)?
+    //        'primary':
+    //        'red darken-3'
+    //   }
+    // }
+    categoryColor: () => (categoryName) => {
+      return (Number(categoryName.substring(5)) % 2)?
+           'primary':
+           'red darken-3'
+    },
+    // 次をPlugin化してコメント最終ラインのreturnのみ生かす方法はエラーになる
+    // しかし、タグに直接「$eyecatch(post)」を書いたらうまくいった。
+    // setEyeCatch: () => (post) => {
+    //   if (post.eyecatch)
+    //     return post.eyecatch.url
+    //   return defaultEyeCatch
+    //   // return this.$eyecatch(post)
+    // }
+  },
+  // 0から始まる曜日を得る（OK）
+  // computed: {
+  //   getsatou() {
+  //     return (arg) => {
+  //       let day = new Date(arg)
+  //       return day.getDay()
+  //     }
+  //   }
+  // },
   // async asyncData() {
     // const { data } = await axios.get(
     //   // your-service-id部分は自分のサービスidに置き換えてください
@@ -133,6 +169,8 @@ export default {
   // },
   mounted() {
     // console.log("sato ", this.contents.length)
+    this.$doSomething("mounted")
+
   }
 }
 </script>

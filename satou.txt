@@ -13,6 +13,9 @@ diarydaylate（一日遅れの日記）
 microCMS + NuxtでJamstackブログを作ってみよう
 https://blog.microcms.io/microcms-nuxt-jamstack-blog/
 
+Nuxt.jsでpluginを使ってみた（郵便番号検索）
+https://codelikes.com/nuxt-plugin/
+
 日記url		https://diarydaylate.microcms.io/create-api
 X-MICROCMS-API-KEY : 2b9d0d8843c649d18d7e7d23ad16cc69323d
 
@@ -63,7 +66,6 @@ Netlifyに環境変数をセットする
 	API_KEY
 ブログ記事の個別ページを用意する
 ブログ記事のリンクにparamsを埋め込む
-次は保留
-	アイキャッチ画像がない場合の対応をする
+アイキャッチ画像がない場合の対応をする	--> 2022/07/28 作成する
 middlewareを使った解決策
 単一記事の取得方法を変更する
