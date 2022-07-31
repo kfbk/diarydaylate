@@ -12,12 +12,17 @@ export const getters = {
     return state.posts;
   },
   takeCategories(state) {
-    console.log('satoucategories', state.categories)
+    // console.log('satoucategories', state.categories)
     return state.categories
+  },
+  relatedPosts: state => (category) => {
+    return state.posts.filter(
+      post => post.category.id === category.id
+    )
   }
 }
 
-// Storeに保存する（commitする）
+// Storeに保存する（commitで呼ばれる）
 export const mutations = {
   // 使い方：this.$store.commit('setPosts', res.data.contents);
   setPosts(state, payload) {
@@ -25,11 +30,12 @@ export const mutations = {
   },
   setCategories(state, payload) {
     state.categories = payload
+    // console.log(state.categories)
   }
 }
 
 // Storeに保存するのは同じだが、
-// APIからデータを得てStoreに保存する（dispatchする）
+// APIからデータを得てStoreに保存する（dispatchで呼ばれる）
 export const actions = {
   async getPosts({ commit }) {
     // await client.getEntries({

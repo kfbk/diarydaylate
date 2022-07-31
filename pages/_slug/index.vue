@@ -1,10 +1,12 @@
 <template>
   <div>
+    <!-- コンポーネントを使う
     <v-breadcrumbs :items="breadcrumbs">
       <template #divider>
         <v-icon>mdi-chevron-right</v-icon>
       </template>
-    </v-breadcrumbs>
+    </v-breadcrumbs> -->
+    <breadcrumbs :add-items="addBreads" />
     {{ currentPost.title }}
     <v-img
       :src="$eyecatch(currentPost)"
@@ -43,11 +45,21 @@
 
 export default {
   computed: {
-    breadcrumbs() {
+    // breadcrumbs() {
+    //   const category = this.currentPost.category
+    //   return [
+    //     { text: 'ホーム', to: '/'},
+    //     { text: category.name, to: '#'}
+    //   ]
+    // },
+    addBreads() {
+      console.log('addBread satou')
       const category = this.currentPost.category
       return [
-        { text: 'ホーム', to: '/'},
-        { text: category.name, to: '#'}
+        {
+          text: category.name,
+          to: '/categories/' + category.id
+        }
       ]
     },
     // 次をPlugin化してコメント最終ラインのreturnのみ生かす方法はエラーになる

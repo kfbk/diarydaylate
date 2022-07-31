@@ -1,7 +1,9 @@
 <template>
-  <v-breadcrumbs :item="breadcrumbs">
+  <v-breadcrumbs :items="breadcrumbs">
     <template #item="props">
-      <v-breadcrumbs-item :to="props.item.to">
+      <v-breadcrumbs-item
+        :to="props.item.to"
+      >
         <v-icon v-if="props.item.icon" color="primary">
           {{ props.item.icon }}
         </v-icon>
@@ -19,24 +21,18 @@
 <script>
 export default {
   props: {
-    // ここに配列を渡した場合に、パンくずリストが追加されます
     addItems: {
       type: Array,
-      default: function() { return [] }
+      default() { return [] }
     }
   },
   data: () => ({
     items: [
-      {
-        icon: 'mdi-home',
-        text: 'ホーム',
-        to: '/'
-      }
+      { icon: 'mdi-home', text: 'ホーム', to: '/' }
     ]
   }),
   computed: {
     breadcrumbs() {
-      // concatは配列を結合するjavascriptのメソッド
       return this.items.concat(this.addItems)
     }
   }
