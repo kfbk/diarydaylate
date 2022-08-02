@@ -97,6 +97,7 @@ export default {
             payload: content
           }))
         )
+      console.log('satouroutes=', pages)
       return pages
     }
   }
